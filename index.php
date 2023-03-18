@@ -8,32 +8,17 @@ class Service
     }
 }
 
-//class Controller
-//{
-//    private $service;
-//
-//    public function __construct(Service $service)
-//    {
-//        $this->service = $service;
-//    }
-//
-//    public function handle()
-//    {
-//        echo $this->service->execute();
-//    }
-//}
-
 class Controller
 {
+//    public function __construct(
+//        private readonly Service $service = new Service()
+//    ) {
+//    }
 
-    public function __construct(
-        private Service $service
-    ) {
-    }
-
-    public function handle(): void
+    public function handle(Service $service = new Service()): void
     {
-        echo $this->service->execute();
+//        echo $this->service->execute();
+        echo $service->execute();
     }
 }
 
