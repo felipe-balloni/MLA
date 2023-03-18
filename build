@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+docker run --rm -i \
+    -v $(pwd):/app \
+    -u $(id -u):$(id -g) \
+    -w /app \
+    composer:2.4.2 "$@"
