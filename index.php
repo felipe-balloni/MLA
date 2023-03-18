@@ -1,27 +1,19 @@
 <?php
 
-class Service
+enum Status: string
 {
-    public function execute(): string
+    case PAID = 'pago';
+    case PENDING = 'processando';
+    case CANCELED = 'cancelado';
+}
+
+class CheckoutService
+{
+    public function handle(Status $gatewayStatus): string
     {
-        return "This class is runnung";
+        return $gatewayStatus->value;
     }
 }
 
-class Controller
-{
-//    public function __construct(
-//        private readonly Service $service = new Service()
-//    ) {
-//    }
-
-    public function handle(Service $service = new Service()): void
-    {
-//        echo $this->service->execute();
-        echo $service->execute();
-    }
-}
-
-$controller = new Controller(new Service());
-
-echo $controller->handle();
+$service = new CheckoutService();
+echo $service->handle(Status::PAID);
