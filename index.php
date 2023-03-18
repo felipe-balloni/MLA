@@ -1,15 +1,15 @@
 <?php
 
-enum Status: string
+enum Status: int
 {
-    case PAID = 'pago';
-    case PENDING = 'processando';
-    case CANCELED = 'cancelado';
+    case PAID = 1;
+    case PENDING = 2;
+    case CANCELED = 0;
 }
 
 class CheckoutService
 {
-    public function handle(Status $gatewayStatus): string
+    public function handle(Status $gatewayStatus): int
     {
         return $gatewayStatus->value;
     }
