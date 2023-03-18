@@ -1,28 +1,62 @@
 <?php
 
-enum Status: int
-{
-    case PAID = 1;
-    case PENDING = 2;
-    case CANCELED = 0;
-
-    public function color(): string
-    {
-        return match ($this) {
-            self::PAID => 'green',
-            self::PENDING => 'yellow',
-            self::CANCELED => 'red',
-        };
-    }
+function SavePerson(
+    string $name,
+    int $age,
+    string $country,
+    int $height,
+    string $momName,
+    string $preferedIDE,
+): string {
+    return "Person saved";
 }
 
-class CheckoutService
-{
-    public function handle(Status $gatewayStatus)
-    {
-        return $gatewayStatus->color();
-    }
+echo SavePerson(
+    "John",
+    25,
+    "USA",
+    180,
+    "Mary",
+    "VSCode"
+);
+
+echo SavePerson(
+    age: 55,
+    country: "Brazil",
+    height: 164,
+    preferedIDE: "VSCode",
+    name: "Maria",
+    momName: "Joana",
+);
+
+$person = [
+    "momName" => "Mary",
+    "name" => "John",
+    "preferedIDE" => "VSCode",
+    "country" => "USA",
+    "age" => 25,
+    "height" => 180,
+];
+
+echo SavePerson(
+    $person["name"],
+    $person["age"],
+    $person["country"],
+    $person["height"],
+    $person["momName"],
+    $person["preferedIDE"],
+);
+
+echo SavePerson(...$person);
+
+//$emptyArray = null;
+
+if (isset($emptyArray)) {
+    echo 'Array is set';
 }
 
-$service = new CheckoutService();
-echo $service->handle(Status::PAID);
+if (empty($emptyArray)) {
+    echo 'Array is empty';
+} else {
+    echo 'Array is not empty';
+}
